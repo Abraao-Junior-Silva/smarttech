@@ -19,7 +19,7 @@ from django.http import HttpResponse
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from cadastro_fornecedores.views import cadastroFornecedor
+from cadastro_fornecedores.views import cadastroFornecedor, listarFornecedores, form_cadastro_fornecedor
 from produtos.views import produtos, adicionar_produto, editar_produto, excluir_produto
 from django.shortcuts import render
 
@@ -30,8 +30,9 @@ def home(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('addfornecedor/', cadastroFornecedor),
-    path('fornecedores/', cadastroFornecedor),
+    path('addfornecedor/', cadastroFornecedor, name="cadastroFornecedor"),
+    path('fornecedores/', listarFornecedores),
+    path('form_cadastro_fornecedor/', form_cadastro_fornecedor, name="form_cadastro_fornecedor"),
     path('produtos/', produtos, name="produtos"),
     path('produtos/adicionar/', adicionar_produto, name="adicionar_produto"),
     path('produtos/editar/<int:id>/', editar_produto, name="editar_produto"),
